@@ -23,7 +23,7 @@ export class AddPerson extends Component {
       this.handlePictureURLChange = this.handlePictureURLChange.bind(this);
       this.handleStreetAddressChange = this.handleStreetAddressChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.handleClear = this.handleClear.bind(this);
+      
   }
       
     handleAgeChange(event) {
@@ -102,17 +102,6 @@ export class AddPerson extends Component {
             }),
             () => console.log(this.state.personData)
         );
-    }
-
-    handleClear(event) {
-        this.setState(newState =>({ personData: {
-            firstName: "",
-            lastName: "",
-            streetAddress: "",
-            age: "",
-            interests: "",
-            pictureUrl: ""
-        }}))
     }
 
     handleSubmit(event) {
@@ -222,13 +211,6 @@ export class AddPerson extends Component {
                       Submit
                       </button>
                   
-                  <button
-                      onClick={this.handleClear}
-                      className="btn btn-secondary">
-                  Clear
-                      </button>
-
-
               </form>
              
           </div>

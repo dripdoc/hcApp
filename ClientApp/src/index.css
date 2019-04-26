@@ -1,0 +1,19 @@
+@media (max-width: 767px) {
+    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
+    body {
+        padding-top: 50px;
+    }
+    .form-horizontal.centered .control-label {
+        margin: 0;
+        padding: 0;
+        width: inherit;
+        vertical-align: middle;
+        line-height: 30px;
+    }
+    .person-pic {
+        height: auto;
+        max-height: 150px;
+        width: auto;
+        max-width: 150px;
+    }
+}

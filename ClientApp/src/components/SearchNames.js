@@ -12,14 +12,18 @@ export class SearchNames extends Component {
   }
       
     handleChange(event) {
-        this.setState({ filter: event.target.value });
+        this.setState({ filter: event.target.value, loading: true });
+        if (event.target.value != "")
+            this.Fetch(event.target.value);
+        else
+            this.setState({ persons: []});
+
     }
 
     handleSubmit(event) {
-        this.setState(this.state.loading : true);
-        this.Fetch(this.state.filter);
         event.preventDefault();
     }
+
     Fetch(name) {
         fetch('api/Persons/' + name)
             .then(response => response.json())
@@ -30,18 +34,19 @@ export class SearchNames extends Component {
     
   render() {
       let contents = this.state.loading
-              ? <p><em>FilteredNames...</em></p>
+              ? <p><em>FilteredNames.</em></p>
             : FetchPersons.renderPersonsTable(this.state.persons);
       return (
           <div>
 
               <h1>Persons</h1>
               <p>Get a filtered list of persons</p>
-              <form onSubmit={this.handleSubmit} >
-                  <textarea required="true" class="form-control" value={this.state.filter} onChange={this.handleChange} />
-               
-              <input class = "form-control" type="submit" value="Submit" />
-           
+              <form className="container-fluid" onSubmit={this.handleSubmit} >
+                  <div>
+                      <label for="filter" className="form-label">Search Filter</label>
+                      <textarea name="filter" className="form-control" required="true" value={this.state.filter} onChange={this.handleChange} />
+                  </div>
+              
               </form>
 
               {contents}

@@ -23,6 +23,7 @@ export class AddPerson extends Component {
       this.handlePictureURLChange = this.handlePictureURLChange.bind(this);
       this.handleStreetAddressChange = this.handleStreetAddressChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleClear = this.handleClear.bind(this);
   }
       
     handleAgeChange(event) {
@@ -103,6 +104,17 @@ export class AddPerson extends Component {
         );
     }
 
+    handleClear(event) {
+        this.setState(newState =>({ personData: {
+            firstName: "",
+            lastName: "",
+            streetAddress: "",
+            age: "",
+            interests: "",
+            pictureUrl: ""
+        }}))
+    }
+
     handleSubmit(event) {
         event.preventDefault();
         let personData = this.state.personData;
@@ -133,17 +145,92 @@ export class AddPerson extends Component {
 
               <h1>Persons</h1>
               <p>Add A person</p>
-              <form onSubmit={this.handleSubmit} >
-                  <textarea required="true" className="form-control" value={this.state.firstName} onChange={this.handleFirstNameChange} />
-                  <textarea required="true" className="form-control" value={this.state.lastName} onChange={this.handleLastNameChange} />
-                  <input type='number' required="true" className="form-control" value={this.state.age} onChange={this.handleAgeChange} />
-                  <textarea required="true" className="form-control" value={this.state.streetAddress} onChange={this.handleStreetAddressChange} />
-                  <textarea required="true" className="form-control" value={this.state.interests} onChange={this.handleInterestsChange} />
-                  <textarea required="false" className="form-control" value={this.state.pictureUrl} onChange={this.handlePictureURLChange} />
-                  <input className="form-control" type="submit" value="Submit" />
+              <form
+                  onSubmit={this.handleSubmit}
+                  className="container-fluid"
+                   >
+                  <div>
+                      <label for="firstName" className="form-label">First Name</label>
+                      <textarea
+                        name="firstName"
+                        className="form-control"
+                        placeholder="Enter first name here"
+                        required="true"
+                        className="form-control"
+                        value={this.state.firstName}
+                          onChange={this.handleFirstNameChange} />
+                  </div>
+                  <div>
+                      <label for="lastName" className="form-label">Last Name</label>
+                      <textarea
+                          name="lastName"
+                          className="form-control"
+                          placeholder="Enter last name here"
+                          required="true"
+                          className="form-control"
+                          value={this.state.lastName}
+                          onChange={this.handleLastNameChange} />
+                  </div>
+                  <div>
+                      <label for="age" className="form-label">Age</label>
+                      <input
+                          name="age"
+                          className="form-control"
+                          type='number'
+                          required="true"
+                          className="form-control"
+                          value={this.state.age}
+                          onChange={this.handleAgeChange} />
+                   </div>
+                   <div>
+                      <label for="streetAddress" className="form-label">Street Address</label>
+                      <textarea
+                          name="streetAddress"
+                          className="form-control"
+                          placeholder="Enter street Address here"
+                          required="true"
+                          className="form-control"
+                          value={this.state.streetAddress}
+                          onChange={this.handleStreetAddressChange} />
+                  </div>
+                  <div>
+                      <label for="interests" className="form-label">Interests</label>
+                      <textarea
+                          name="interests"
+                          className="form-control"
+                          placeholder="Add Interests name here"
+                          required="true"
+                          className="form-control"
+                          value={this.state.interests}
+                          onChange={this.handleInterestsChange} />
+                  </div>
+                  <div>
+                      <label for="pictureUrl" className="form-label">PictureURL</label>
+                      <textarea
+                          name="pictureUrl"
+                          className="form-control"
+                          placeholder="Enter url for person picture"
+                          required="false"
+                          className="form-control"
+                          value={this.state.pictureUrl}
+                          onChange={this.handlePictureURLChange} />
+                  </div>
+                  <button
+                      action={this.handleSubmit}
+                      className="btn btn-primary btn-margin">
+               
+                      Submit
+                      </button>
+                  
+                  <button
+                      onClick={this.handleClear}
+                      className="btn btn-secondary">
+                  Clear
+                      </button>
+
 
               </form>
-              Respsone: {this.state.response}
+             
           </div>
       );
   }

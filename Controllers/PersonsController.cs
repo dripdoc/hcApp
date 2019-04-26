@@ -12,6 +12,7 @@ namespace hcApp2.Controllers
     [ApiController]
     public class PersonsController : ControllerBase
     {
+        private readonly int delay = 3000;
         private readonly PersonInfoContext _context;
        public PersonsController(PersonInfoContext context)
         {
@@ -29,6 +30,7 @@ namespace hcApp2.Controllers
         [HttpGet("{name:alpha}")]
         public async Task<ActionResult<IEnumerable<Person>>> Get( string name)
         {
+            await Task.Delay(delay);
             return await _context.Persons.Where(x=> x.FirstName.Contains(name, StringComparison.CurrentCultureIgnoreCase) || x.LastName.Contains(name, StringComparison.CurrentCultureIgnoreCase)). ToListAsync();
         }
 
